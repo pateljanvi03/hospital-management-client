@@ -2,7 +2,9 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import LoginView from '../views/LoginView.vue';
 import DoctorsView from '../views/DoctorsView.vue';
-import DepartmentView from '../views/DepartmentView.vue';
+import DepartmentsView from '../views/DepartmentsView.vue';
+import HospitalsView from '../views/HospitalsView.vue';
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -19,7 +21,12 @@ const routes = [
   {
     path: '/departments',
     name: 'departments',
-    component: DepartmentView
+    component: DepartmentsView
+  },
+  {
+    path: '/hospitals',
+    name: 'hospitals',
+    component: HospitalsView
   }
 ]
 
