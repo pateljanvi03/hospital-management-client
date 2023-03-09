@@ -1,7 +1,8 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import LoginView from '../views/LoginView.vue'
-import DoctorsView from '../views/DoctorsView.vue'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import LoginView from '../views/LoginView.vue';
+import DoctorsView from '../views/DoctorsView.vue';
+import DepartmentView from '../views/DepartmentView.vue';
 Vue.use(VueRouter)
 
 const routes = [
@@ -14,7 +15,11 @@ const routes = [
     path: '/doctors',
     name: 'doctors',
     component: DoctorsView,
-    meta: { bodyClass: '' }
+  },
+  {
+    path: '/departments',
+    name: 'departments',
+    component: DepartmentView
   }
 ]
 
@@ -23,6 +28,6 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
-})
+});
 
-export default router
+export default router;

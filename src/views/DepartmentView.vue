@@ -4,19 +4,19 @@
       <div>
         <div class="flex flex-col">
           <modal
-            name="doctor-form"
+            name="department-form"
             height="auto"
             :min-width="200"
             :min-height="200"
             :scrollable="true"
             :reset="true"
           >
-            <DoctorForm :editableData ="editableData" :hospitals ="hospitals" :departments="departments" @refresh ="loadData"
-            ></DoctorForm>
+            <DepartmentForm :editableData ="editableData" @refresh ="loadData"
+            ></DepartmentForm>
           </modal>
           <div>
             <div class="sm:flex justify-between">
-              <h1 class="text-2xl font-semibold text-gray-900">Doctors</h1>
+              <h1 class="text-2xl font-semibold text-gray-900">Departments</h1>
               <button
                 type="button"
                  @click="showForm"
@@ -34,7 +34,7 @@
                 >
                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                 </svg>
-                Add Doctor
+                Add Department
               </button>
             </div>
             <div class="mt-8 flex flex-col">
@@ -49,29 +49,13 @@
                           <th
                             scope="col"
                             class="px-3 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gary-900 sm:pl-6"
-                          >Name</th>
-                          <th
-                            scope="col"
-                            class="px-3 py-3.5 pl-4 text-left text-sm font-semibold text-gray-900"
-                          >Hospital</th>
-                          <th
-                            scope="col"
-                            class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                          >Department</th>
-                          <th
-                            scope="col"
-                            class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                          >Address</th>
-                          <th
                             colspan="3"
-                            scope="col"
-                            class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                          >Phone</th>
+                          >Name</th>
                         </tr>
                       </thead>
                       <tbody class="divide-y divide-gray-200 bg-white">
                         <tr v-if="isLoading">
-                          <td align="center" class="py-5" colspan="5">
+                          <td align="center" class="py-5" >
                             <svg
                               class="animate-spin -ml-1 mr-3 h-6 w-6 text-indigo-600"
                               xmlns="http://www.w3.org/2000/svg"
@@ -94,29 +78,17 @@
                             </svg>
                           </td>
                         </tr>
-                        <tr v-else v-for="doctor in doctors" :key="doctor._id">
+                        <tr v-else v-for="department in departments" :key="department._id">
                           <td
                             class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"
-                          >{{ doctor.name }}</td>
-                          <td
-                            class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"
-                          >{{ doctor.hospital.name}}</td>
-                          <td
-                            class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"
-                          >{{ doctor.department.name }}</td>
-                          <td
-                            class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"
-                          >{{ doctor.address }}</td>
-                          <td
-                            class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"
-                          >{{ doctor.phone }}</td>
+                          >{{ department.name }}</td>
                           <td
                             class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6"
                           >
                             <a
                               href="#"
                               class="text-indigo-600 hover:text-indigo-900"
-                              @click="edit(doctor)"
+                              @click="edit(department)"
                             >
                               Edit
                               <span class="sr-only"></span>
@@ -125,7 +97,7 @@
                           <td>
                             <a
                               class="text-indigo-600 hover:text-indigo-900 ml-2 hover:cursor-pointer"
-                              @click="deleteData(doctor)"
+                              @click="deleteData(department)"
                             >Delete</a>
                           </td>
                         </tr>
@@ -144,19 +116,17 @@
 
 <script>
 import axios from 'axios';
-import DoctorForm from '../components/DoctorForm.vue';
+import DepartmentForm from '../components/DepartmentForm.vue';
 
 export default {
   components: {
-    DoctorForm
+    DepartmentForm
   },
   data() {
     return {
-      doctors : [],
+      departments : [],
       editableData: {},
-      hospitals:[],
-      departments: [],
-      isLoadin: false
+      isLoading: false
 
     }
   },
@@ -166,25 +136,21 @@ export default {
   methods: {
     async loadData() {
       this.isLoading = true;
-      let response = await axios.get('/doctor');
-      this.doctors = response.data.doctors;
-      response = await axios.get('/department');
+      let response = await axios.get('/department');
       this.departments = response.data.departments;
-      response = await axios.get('/hospital');
-      this.hospitals = response.data.hospitals;
       this.isLoading = false;
     },
-    edit(doctor) {
-      this.editableData = doctor;
-      this.$modal.show("doctor-form");
+    edit(department) {
+      this.editableData = department;
+      this.$modal.show("department-form");
     },
-    async deleteData(doctor) {
-      await axios.delete('/doctor/' + doctor._id);
+    async deleteData(department) {
+      await axios.delete('/department/' + department._id);
       this.loadData();
     },
     showForm() {
       this.editableData = {};
-      this.$modal.show("doctor-form");
+      this.$modal.show("department-form");
     }
   }
 }

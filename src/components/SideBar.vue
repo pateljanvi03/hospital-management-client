@@ -74,9 +74,9 @@
           </router-link>
 
           <router-link
-            to="/fooditems"
+            to="/departments"
             class="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
-            :class="$route.path == '/fooditems'? 'bg-gray-900' : ''"
+            :class="$route.path == '/departments'? 'bg-gray-900' : ''"
           >
             <!-- Heroicon name: outline/folder -->
             <svg
@@ -93,7 +93,7 @@
                 d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"
               />
             </svg>
-            Items
+            Departments
           </router-link>
 
           <router-link
