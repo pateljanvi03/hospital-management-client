@@ -4,6 +4,9 @@ import LoginView from '../views/LoginView.vue';
 import DoctorsView from '../views/DoctorsView.vue';
 import DepartmentsView from '../views/DepartmentsView.vue';
 import HospitalsView from '../views/HospitalsView.vue';
+import PatientsView from '../views/PatientsView.vue';
+import PatiensAppointmentsView from '../views/PatiensAppointmentsView.vue';
+//import { component } from 'vue/types/umd';
 
 Vue.use(VueRouter)
 
@@ -27,6 +30,16 @@ const routes = [
     path: '/hospitals',
     name: 'hospitals',
     component: HospitalsView
+  },
+  {
+    path: '/patients',
+    name: 'patients',
+    component: PatientsView
+  },
+  {
+    path: '/patientAppointment',
+    name: 'patientAppointment',
+    component: PatiensAppointmentsView
   }
 ]
 
