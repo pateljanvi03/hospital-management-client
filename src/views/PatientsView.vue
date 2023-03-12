@@ -188,8 +188,10 @@ export default {
       this.$modal.show("patient-form");
     },
     async deleteData(patient) {
-      await axios.delete('/patient/' + patient._id);
-      this.loadData();
+      if(confirm("Are you sure you want to delete?") == true) {
+        await axios.delete('/patient/' + patient._id);
+        this.loadData();
+      }
     },
     showForm() {
       this.editableData = {};

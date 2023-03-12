@@ -71,7 +71,7 @@
                       </thead>
                       <tbody class="divide-y divide-gray-200 bg-white">
                         <tr v-if="isLoading">
-                          <td align="center" class="py-5" colspan="3" >
+                          <td align="center" class="py-5" colspan="5" >
                             <svg
                               class="animate-spin -ml-1 mr-3 h-6 w-6 text-indigo-600"
                               xmlns="http://www.w3.org/2000/svg"
@@ -190,8 +190,10 @@ export default {
       this.$modal.show("patientAppointment-form");
     },
     async deleteData(patientAppointment) {
-      await axios.delete('/patient-appoinment/' + patientAppointment._id);
-      this.loadData();
+      if(confirm("Are you sure you wnat to delete?") == true) {
+        await axios.delete('/patient-appoinment/' + patientAppointment._id);
+        this.loadData();
+      }
     },
     showForm() {
       this.editableData = {};

@@ -13,7 +13,6 @@ import { ValidationProvider, ValidationObserver  } from 'vee-validate/dist/vee-v
 
 Vue.config.productionTip = false
 axios.defaults.baseURL = process.env.VUE_APP_SERVER_URL || "http://localhost:5001";
-
 Vue.component('ValidationProvider', ValidationProvider);
 Vue.component('ValidationObserver', ValidationObserver);
 new Vue({

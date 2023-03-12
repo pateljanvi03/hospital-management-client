@@ -145,8 +145,10 @@ export default {
       this.$modal.show("department-form");
     },
     async deleteData(department) {
-      await axios.delete('/department/' + department._id);
-      this.loadData();
+      if(confirm("Are you sure you wnat to delete?") == true) {
+        await axios.delete('/department/' + department._id);
+        this.loadData();
+      }
     },
     showForm() {
       this.editableData = {};

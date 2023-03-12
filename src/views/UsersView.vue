@@ -4,19 +4,19 @@
       <div>
         <div class="flex flex-col">
           <modal
-            name="hospital-form"
+            name="user-form"
             height="auto"
             :min-width="200"
             :min-height="200"
             :scrollable="true"
             :reset="true"
           >
-            <HospitalForm :editableData ="editableData" @refresh ="loadData"
-            ></HospitalForm>
+            <UserForm :editableData ="editableData" @refresh ="loadData"
+            ></UserForm>
           </modal>
           <div>
             <div class="sm:flex justify-between">
-              <h1 class="text-2xl font-semibold text-gray-900">Hospitals</h1>
+              <h1 class="text-2xl font-semibold text-gray-900">Users</h1>
               <button
                 type="button"
                  @click="showForm"
@@ -34,7 +34,7 @@
                 >
                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                 </svg>
-                Add Hospital
+                Add User
               </button>
             </div>
             <div class="mt-8 flex flex-col">
@@ -53,12 +53,8 @@
                           <th
                             scope="col"
                             class="px-3 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gary-900 sm:pl-6"
-                          >Branch</th>
-                          <th
-                            scope="col"
-                            class="px-3 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gary-900 sm:pl-6"
                             colspan="3"
-                          >Address</th>
+                          >UserName</th>
                         </tr>
                       </thead>
                       <tbody class="divide-y divide-gray-200 bg-white">
@@ -86,23 +82,20 @@
                             </svg>
                           </td>
                         </tr>
-                        <tr v-else v-for="hospital in hospitals" :key="hospital._id">
+                        <tr v-else v-for="user in users" :key="user._id">
                           <td
                             class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"
-                          >{{ hospital.name }}</td>
+                          >{{ user.name }}</td>
                           <td
                             class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"
-                          >{{ hospital.branch }}</td>
-                          <td
-                            class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"
-                          >{{ hospital.address }}</td>
+                          >{{ user.userName }}</td>
                           <td
                             class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6"
                           >
                             <a
                               href="#"
                               class="text-indigo-600 hover:text-indigo-900"
-                              @click="edit(hospital)"
+                              @click="edit(user)"
                             >
                               Edit
                               <span class="sr-only"></span>
@@ -111,7 +104,7 @@
                           <td>
                             <a
                               class="text-indigo-600 hover:text-indigo-900 ml-2 hover:cursor-pointer"
-                              @click="deleteData(hospital)"
+                              @click="deleteData(user)"
                             >Delete</a>
                           </td>
                         </tr>
@@ -130,15 +123,15 @@
 
 <script>
 import axios from 'axios';
-import HospitalForm from '../components/HospitalForm.vue';
+import UserForm from '../components/UserForm.vue';
 
 export default {
   components: {
-    HospitalForm
+    UserForm
   },
   data() {
     return {
-      hospitals : [],
+      users : [],
       editableData: {},
       isLoading: false
 
@@ -150,23 +143,23 @@ export default {
   methods: {
     async loadData() {
       this.isLoading = true;
-      let response = await axios.get('/hospital');
-      this.hospitals = response.data.hospitals;
+      let response = await axios.get('/user');
+      this.users = response.data.users;
       this.isLoading = false;
     },
-    edit(hospital) {
-      this.editableData = hospital;
-      this.$modal.show("hospital-form");
+    edit(user) {
+      this.editableData = user;
+      this.$modal.show("user-form");
     },
-    async deleteData(hospital) {
-      if(confirm("Are you sure you wnat to delete?") == true) {
-        await axios.delete('/hospital/' + hospital._id);
+    async deleteData(user) {
+      if(confirm("Are you sure you want to delete?") == true) {
+        await axios.delete('/user/' + user._id);
         this.loadData();
       }
     },
     showForm() {
       this.editableData = {};
-      this.$modal.show("hospital-form");
+      this.$modal.show("user-form");
     }
   }
 }

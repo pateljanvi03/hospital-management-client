@@ -4,7 +4,6 @@
       <div class="flex flex-1 justify-between px-4">
         <div class="flex flex-1"></div>
         <div class="ml-4 flex items-center md:ml-6">
-          <!-- Profile dropdown -->
           <div class="relative ml-3">
             <div>
               <button
@@ -13,8 +12,8 @@
                 id="user-menu-button"
                 aria-expanded="false"
                 aria-haspopup="true"
+                @click="profileDropDown = !profileDropDown"
               >
-                <!-- @click="pofileDropDown = !pofileDropDown" -->
                 <span class="sr-only">Open user menu</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -33,11 +32,9 @@
               </button>
             </div>
 
-            <!--
-              Dropdown menu, show/hide based on menu state
-            -->
-            <!-- <div
+            <div
               class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none cursor-pointer"
+              :class="profileDropDown == false? 'hidden': ''"
               role="menu"
               aria-orientation="vertical"
               aria-labelledby="user-menu-button"
@@ -48,11 +45,29 @@
                 role="menuitem"
                 tabindex="-1"
                 id="user-menu-item-2"
+                @click="logOut"
               >Sign out</a>
-            </div> -->
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      profileDropDown: false
+    }
+  },
+
+  methods: {
+    logOut() {
+      localStorage.removeItem("authToken");
+      this.$router.push('/login');
+    }
+  }
+}
+</script>

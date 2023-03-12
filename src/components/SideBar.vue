@@ -12,16 +12,7 @@
           stroke="currentColor"
           class="w-7 h-7 mr-3 stroke-white"
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z"
-          />
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z"
-          />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
         </svg>
         Hospital
       </div>
@@ -55,7 +46,6 @@
             class="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
             :class="$route.path == '/doctors'? 'bg-gray-900' : ''"
           >
-            <!-- Heroicon name: outline/users -->
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -78,7 +68,6 @@
             class="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
             :class="$route.path == '/departments'? 'bg-gray-900' : ''"
           >
-            <!-- Heroicon name: outline/folder -->
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -101,7 +90,6 @@
             class="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
             :class="$route.path == '/hospitals'? 'bg-gray-900' : ''"
           >
-            <!-- Heroicon name: outline/calendar -->
             <svg
               class="text-gray-400 group-hover:text-gray-300 mr-3 flex-shrink-0 h-6 w-6"
               xmlns="http://www.w3.org/2000/svg"
@@ -125,7 +113,6 @@
             class="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
             :class="$route.path == '/patients'? 'bg-gray-900' : ''"
           >
-            <!-- Heroicon name: outline/inbox -->
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -148,7 +135,6 @@
             class="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
             :class="$route.path == '/patientAppointment'? 'bg-gray-900' : ''"
           >
-            <!-- Heroicon name: outline/chart-bar -->
             <svg
               class="text-gray-400 group-hover:text-gray-300 mr-3 flex-shrink-0 h-6 w-6"
               xmlns="http://www.w3.org/2000/svg"
@@ -165,6 +151,29 @@
               />
             </svg>
             Patients' Appointments
+          </router-link>
+
+          <router-link
+            to="user"
+            class="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
+            :class="$route.path == '/user'? 'bg-gray-900' : ''"
+          >
+            <svg
+              class="text-gray-400 group-hover:text-gray-300 mr-3 flex-shrink-0 h-6 w-6"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+              />
+            </svg>
+            Users
           </router-link>
         </nav>
       </div>

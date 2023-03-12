@@ -173,14 +173,16 @@ export default {
       response = await axios.get('/hospital');
       this.hospitals = response.data.hospitals;
       this.isLoading = false;
-    },
+     },
     edit(doctor) {
       this.editableData = doctor;
       this.$modal.show("doctor-form");
     },
     async deleteData(doctor) {
-      await axios.delete('/doctor/' + doctor._id);
-      this.loadData();
+      if(confirm("Are you sure you want to delete?") == true) {
+        await axios.delete('/doctor/' + doctor._id);
+        this.loadData();
+      }
     },
     showForm() {
       this.editableData = {};
