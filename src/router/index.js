@@ -8,6 +8,7 @@ import PatientsView from '../views/PatientsView.vue';
 import PatiensAppointmentsView from '../views/PatiensAppointmentsView.vue';
 import UsersView from '../views/UsersView';
 import axios from 'axios';
+import DashboardView from '../views/DashboardView';
 
 Vue.use(VueRouter)
 
@@ -46,6 +47,11 @@ const routes = [
     path: '/user',
     name: 'user',
     component: UsersView
+  },
+  {
+    path: '/dashboard',
+    name: 'dashboard',
+    component: DashboardView
   }
 ]
 

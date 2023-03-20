@@ -180,7 +180,6 @@ export default {
       this.isLoading = true;
       let response = await axios.get('/patient');
       this.patients = response.data.patients;
-      console.log(this.patients)
       this.isLoading = false;
     },
     edit(patient) {
