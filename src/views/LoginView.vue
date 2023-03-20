@@ -27,7 +27,7 @@
             <div>
               <label
                 for="password"
-                class="block text-sm font-medium leading-6 text-gray-900"
+                class="block text-sm font-medium leading-6 text-gray-900 "
               >Password</label>
               <ValidationProvider name="Password" rules="required" v-slot="{ errors }">
                 <input
@@ -37,8 +37,9 @@
                   type="password"
                   autocomplete="current-password"
                   required
-                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
+                  class="mt-2 appearance-none text-slate-900 bg-white rounded-md block w-full px-3 h-10 shadow-sm sm:text-sm focus:outline-none placeholder:text-slate-400"
+                  :class="errors.length ? 'focus:ring-2 focus:ring-sky-500 ring-2 ring-rose-400' : 'focus:ring-2 focus:ring-sky-500 ring-1 ring-slate-200'"
+                  />
                 <span class="text-red-600 text-sm">{{ errors[0] }}</span>
               </ValidationProvider>
               <div v-if="error != undefined" class="text-red-600 text-sm">{{error}}</div>

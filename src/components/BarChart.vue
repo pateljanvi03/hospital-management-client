@@ -1,5 +1,6 @@
 <template>
   <Bar
+    v-if="isDataReady"
     id="my-chart-id"
     :options="chartOptions"
     :data="chartData"
@@ -18,38 +19,45 @@ export default {
   components: { Bar },
   data() {
     return {
+      isDataReady: false,
       chartData: {
         labels: [],
-        datasets: [ { data: [] } ]
+        datasets: [
+          {
+            label: "Patients (Last 7 Days)",
+            backgroundColor: "rgb(99 102 241)",
+            data: []
+          }
+        ]
       },
       chartOptions: {
         responsive: true
-      }
+      },
+      dates: []
     }
   },
-  created() {
-    this.loadData();
-    this.chartData;
+  async created() {
+    await this.loadData();
   },
   methods: {
     async loadData() {
-      let dates = [];
-      let counts = [];
+      const dates = [];
+      const counts = [];
+
       const response = await axios.get("/patient/barChart/day");
       for(let i of response.data.barChartData) {
         dates.push(i._id);
-        counts.push(i.count);
+        counts.push(i.count || 0)
+      }
+      this.chartData.labels = dates;
+
+      this.chartData.datasets[0] = {
+        label: "Patients (Last 7 Days)",
+        backgroundColor: "rgb(99 102 241)",
+        data: counts
       }
 
-      this.chartData.labels = dates;
-      this.chartData.datasets = [
-        {
-          label: "Patients (Last 7 Days)",
-          backgroundColor: "rgb(99 102 241)",
-          data: counts
-        }
-      ];
-      console.log(this.chartData);
+      this.isDataReady = true;
     }
   }
 }
